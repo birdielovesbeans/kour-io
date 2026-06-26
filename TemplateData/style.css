@@ -1,0 +1,371 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+html, body {
+    height: 100%;
+}
+canvas {
+    display: block;
+}
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+#unity-container {
+    width: 100%;
+    height: 100%;
+}
+#unity-canvas {
+    width: 100%;
+    height: 100%;
+    
+}
+#loading-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9a534;
+    background-size: cover;
+    background-position: center;
+}
+#loading-cover-2 {
+    width: 100%;
+    height: 100%;
+    background-image: url('background2.webp');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#unity-loading-bar {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    width: 40%;
+    bottom: 45%;
+    position: absolute;
+    margin: 0 auto;
+}
+#unity-loading-bar-fast {
+    flex: 1 1 auto;
+    display: none;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    width: 40%;
+    bottom: 45%;
+    position: absolute;
+}
+
+#unity-progress-bar-empty {
+    width: 100%;
+    height: 24px;
+    /*margin: 10px 20px 20px 10px;*/
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.5);
+    /*border: 2px solid #ffffff;*/
+    /*padding: 2px;*/
+}
+#unity-progress-bar-full {
+    width: 0%;
+    height: 100%;
+    background: #ffffff;
+}
+.spinner,
+.spinner:after {
+  border-radius: 50%;
+  width: 5em;
+  height: 5em;
+}
+.spinner {
+  margin: 10px;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #ffffff;
+  transform: translateZ(0);
+  animation: spinner-spin 1.1s infinite linear;
+}
+@keyframes spinner-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes shake {
+    0% { transform: scale(1.1, 1);
+        transform: rotate(1); }   
+    50% { transform: scale(1, 1.1);
+        transform: rotate(-1); }
+    100% { transform: scale(1.1, 1); 
+        transform: rotate(-1); }
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+.rotate-message {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    z-index: 999;
+}
+.rotate-message p {
+    color: white;
+    font-size: 24px;
+    margin-top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Fjalla One', sans-serif;
+    user-select: none;
+}
+.fast-loader {
+    width: 100%;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+    background: rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+}
+
+    .fast-loader::after {
+        content: '';
+        width: 192px;
+        height: 24px;
+        background: #FFF;
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        animation: animFastloader 1s linear infinite;
+    }
+
+@keyframes animFastloader {
+    0% {
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(600%, 0, 0);
+    }
+}
+.kourTitle {
+    width: 19.1%;
+    position: absolute;
+    bottom: 45%;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: 50% 0%;
+    user-select: none;
+}
+#loadingTxt {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 1.35em;
+    position: absolute;
+    top: calc(50% + 40px);
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    user-select: none;
+    text-shadow: 2px 2px 4px #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#loadingTxtMinimal {
+    opacity: 0.78;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 1em;
+    position: absolute;
+    top: calc(50% + 77px);
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    user-select: none;
+    text-shadow: 2px 2px 4px #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@media (max-width: 768px) {
+    .kourTitle {
+        width: 38.2%;
+        bottom: calc(45% + 10px);
+    }
+
+    #loadingTxt {
+        top: calc(50% + 30px);
+    }
+
+    #loadingTxtMinimal {
+        top: calc(50% + 70px);
+    }
+}
+@media (max-height: 350px) {
+    .kourTitle {
+        bottom: calc(45% + 10px);
+    }
+
+    #loadingTxt {
+        top: calc(50% + 5px);
+    }
+
+    #loadingTxtMinimal {
+        top: calc(50% + 45px);
+    }
+}
+#refreshImage {
+    user-select: none;
+    position: fixed;
+    bottom: -100%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    transition: bottom 1s;
+    cursor: pointer;
+}
+@media (max-width: 600px) {
+    #refreshImage {
+        /* Combine translateX and scale in the same transform property */
+        transform: translateX(-50%) scale(0.6);
+        transform-origin: center;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        bottom: -100%;
+    }
+
+    to {
+        bottom: 0;
+    }
+}
+@keyframes slideDown {
+    from {
+        bottom: 0;
+    }
+
+    to {
+        bottom: -100%;
+    }
+}
+.fade-in {
+    animation: fadeIn 0.05s ease-in-out forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.05s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+#usePortraitBtn {
+    font-family: 'Fjalla One', sans-serif;
+    position: absolute;
+    z-index: 1000; /* Ensure it's above other elements but under the rotate message */
+    bottom: 20%; /* Adjust based on your layout */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #FFF; /* White text */
+    background-color: #454a52; /* Bootstrap primary blue, change as needed */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+
+#usePortraitBtn:hover {
+    background-color: #7e8187; /* A darker shade of blue on hover */
+}
+
+
+.moregameinfo-share {
+    display: none;
+    user-select: none;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    gap: 2px;
+    justify-content: center;
+    background-color: rgb(0, 145, 255);
+    border: transparent solid;
+    width: 130px;
+    height: 30px;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 100px;
+    color: rgb(255, 255, 255);
+    transition: ease-in-out 0.15s;
+    font-family: 'Fjalla One', sans-serif;
+    font-weight: 500;
+    transform: scale(1);
+    position: absolute; /* Or 'fixed' depending on your needs */
+    top: 20px;
+    left: 50%; /* Move to 50% of the parent's width */
+    transform: translateX(-50%); /* Offset by half of its own width to center */
+}
+
+.moregameinfo-share:hover {
+    cursor: pointer;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    outline: solid 2px rgb(255, 255, 255);
+    outline-offset: 3px;
+}
+    .moregameinfo-share img {
+        filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
+        margin-left: 5px;
+        width: 20px;
+    }
+.moregameinfo-share:hover img {
+    filter: invert(100%);
+}
+
+@media (max-width: 767px) {
+    .qc-cmp2-container {
+        display: none; /* Hides the CMP container on mobile devices */
+    }
+}
